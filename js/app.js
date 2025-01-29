@@ -58,18 +58,35 @@ const placePiece = (index) => {
 }
 
 const handleClick = (event) => {
-    const squareIndex = parseInt(event.target.id);
-    if (board[squareIndex] !== '' || winner || tie) {
+    const squareIndex = event.target.id;
+    const squareTaken = board[squareIndex] !== '';
+    if (squareTaken || winner){
         return;
     }
-    placePiece(squareIndex);
-    checkForWinner();
-    checkForTie();
-    if(!winner && !tie) {
-    switchPlayerTurn();
-    }
-    render();
-}
+   placePiece(squareIndex);
+   checkForWinner();
+   checkForTie();
+   switchPlayerTurn();
+   render();
+};
+
+// const handleClick = (event) => {
+//     const squareIndex = parseInt(event.target.id);
+//     if (board[squareIndex] !== '' || winner || tie) {
+//         return;
+//     }
+//     placePiece(squareIndex);
+//     checkForWinner();
+//     checkForTie();
+//     if(!winner && !tie) {
+//     switchPlayerTurn();
+//     }
+//     render();
+// }
+//found the parseInt and it seemed like it was kind of up the alley
+//of out Math application in the class exercise, but it's not something
+//we've used before, so aside from MDN don't know if it's appropriate
+
 
 const checkForTie = () => {
  if (winner) return;
